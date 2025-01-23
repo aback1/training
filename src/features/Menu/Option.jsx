@@ -1,17 +1,22 @@
+import React, { useCallback } from "react";
 import { useSearchParams } from "react-router-dom";
 
-export default function Option({ option, itemName }) {
+const Option = React.memo(({ option, itemName }) => {
     const [searchParams, setSearchParams] = useSearchParams();
 
-    const updateSearchParams = (key, isChecked) => {
-        const newParams = new URLSearchParams(searchParams);
-        if (isChecked) {
-            newParams.set(key, "on");
-        } else {
-            newParams.delete(key);
-        }
-        setSearchParams(newParams);
-    };
+    // Memoize the updateSearchParams function
+    const updateSearchParams = useCallback(
+        (key, isChecked) => {
+            const newParams = new URLSearchParams(searchParams);
+            if (isChecked) {
+                newParams.set(key, "on");
+            } else {
+                newParams.delete(key);
+            }
+            setSearchParams(newParams);
+        },
+        [searchParams, setSearchParams] // Dependencies
+    );
 
     const paramKey = `${itemName}_${option}`;
     const isChecked = searchParams.get(paramKey) === "on";
@@ -27,4 +32,6 @@ export default function Option({ option, itemName }) {
             <label>{option}</label>
         </div>
     );
-}
+});
+
+export default Option;
