@@ -1,13 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    orderId: "",
+    orderId: null,
     items: [],
     showOrderForm: false,
     payment: "paypal",
-    fullName: "",
-    address: "",
-    email: "",
+    fullName: null,
+    address: null,
+    email: null,
     allCredentialsentered: false,
 };
 

@@ -30,8 +30,8 @@ export default function MenuItem({ item }) {
     };
     //all options that are set to on in the URL
     const selectedOptions = options
-        .map((option) => {
-            const isSelected = searchParams.get(`${name}_${option}`) === "on"; // Use prefixed key
+    .map((option) => {
+            const isSelected = searchParams.get(`${name}_${option}`) === "on";
             return isSelected ? { name: option, selected: true } : null;
         })
         .filter((option) => option !== null);

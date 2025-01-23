@@ -31,7 +31,7 @@ export default function OrderItem({ order }) {
                                 ))}
                             </ul>
                         </li>
-                        ) : null) }
+                    ) : null) }
             </ul>
         </div>
     );

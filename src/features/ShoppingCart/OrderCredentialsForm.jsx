@@ -27,7 +27,6 @@ export default function OrderCredentialsForm() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        alert(`Name: ${fullName}\nEmail: ${email}\nAddress: ${address}\nPayment: ${paymentOption}`);
         dispatch(setEmail(email));
         dispatch(setAddress(address));
         dispatch(setFullName(fullName));

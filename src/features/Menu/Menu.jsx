@@ -1,5 +1,6 @@
 import MenuItem from './MenuItem';
 import { useFetchFoodQuery } from "./menuApi.js";
+import {selectCartAmount} from "../ShoppingCart/shoppingCartSlice.js";
 
 export default function Menu() {
     const { data: foodData, error, isLoading } = useFetchFoodQuery();
@@ -23,3 +24,27 @@ export default function Menu() {
         </div>
     );
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -20,14 +20,14 @@ export default function ShoppingCart() {
     const cartItems = useSelector((state) => state.shoppingCart.items);
     const userPayment = useSelector((state) => state.shoppingCart.payment);
 
-    const [createOrder, {isLoading}] = useCreateOrderMutation();
+    const [createOrder, {isLoading, isError}] = useCreateOrderMutation();
 
     function handleConfirmOrder() {
 
         dispatch(setShowOrderForm(true));
     }
 
-    const cartTotal = useSelector((state) => totalCartAmount(state));
+    const cartTotal = useSelector((state) => totalCartAmount(state)).toFixed(2);
 
 
     function handleClearCart() {
@@ -58,18 +58,15 @@ export default function ShoppingCart() {
         navigate("/your-order");
     }
 
-    const items = useSelector((state) => state.shoppingCart.items || []).filter(
-        (item) => item.name !== undefined
-    );
+    const items = useSelector((state) => state.shoppingCart.items || []);
 
     const showOrderForm = useSelector(state => state.shoppingCart.showOrderForm);
 
-    const itemsHaveName = items.every((item) => item.name !== "");
 
     return (
         <aside className="p-4 border rounded-lg shadow-md">
             <h1 className="text-2xl font-semibold mb-4">Shopping Cart</h1>
-            {items.length > 0 && itemsHaveName ? (
+            {items.length > 0 && items ? (
                 <>
                     {items.map((item, index) => (
                         <ShoppingCartItem key={index} item={item} />

@@ -2,24 +2,21 @@ import { configureStore } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/query";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage"; // Default: localStorage for web
+import { orderApi } from "../features/Order/orderApi.js";
 import { menuApi } from "../features/Menu/menuApi.js";
 import shoppingCartReducer from "../features/ShoppingCart/shoppingCartSlice.js";
 import favoritesReducer from "../features/Favorites/favoritesSlice.js";
-import { orderApi } from "../features/Order/orderApi.js";
-
 
 // Persist configuration for the shoppingCart slice
 const shoppingCartPersistConfig = {
     key: "shoppingCart",
-    storage,
-    whitelist: ["items", "userId"], // Persist specific keys in the shoppingCart slice
+    storage
 };
 
 const favoritesPersistConfig = {
     key: "favorites",
-    storage,
-    whitelist: ["items", "favoriteId"],
-}
+    storage
+};
 
 const persistedfavoriteReducer = persistReducer(
     favoritesPersistConfig,
