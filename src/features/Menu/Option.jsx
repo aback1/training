@@ -4,7 +4,6 @@ import { useSearchParams } from "react-router-dom";
 const Option = React.memo(({ option, itemName }) => {
     const [searchParams, setSearchParams] = useSearchParams();
 
-    // Memoize the updateSearchParams function
     const updateSearchParams = useCallback(
         (key, isChecked) => {
             const newParams = new URLSearchParams(searchParams);
