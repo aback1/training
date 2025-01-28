@@ -7,7 +7,6 @@ import { menuApi } from "../features/Menu/menuApi.js";
 import shoppingCartReducer from "../features/ShoppingCart/shoppingCartSlice.js";
 import favoritesReducer from "../features/Favorites/favoritesSlice.js";
 
-// Persist configuration for the shoppingCart slice
 const shoppingCartPersistConfig = {
     key: "shoppingCart",
     storage
@@ -23,7 +22,6 @@ const persistedfavoriteReducer = persistReducer(
     favoritesReducer
 );
 
-// Wrap the shoppingCart reducer with persistReducer
 const persistedShoppingCartReducer = persistReducer(
     shoppingCartPersistConfig,
     shoppingCartReducer
@@ -31,17 +29,12 @@ const persistedShoppingCartReducer = persistReducer(
 
 export const store = configureStore({
     reducer: {
-        // Reducer for the menu API
         [menuApi.reducerPath]: menuApi.reducer,
-        // Reducer for the order API
         [orderApi.reducerPath]: orderApi.reducer,
-        // Persisted shoppingCart reducer
         shoppingCart: persistedShoppingCartReducer,
-
         favorites:  persistedfavoriteReducer
 
     },
-    // Adding the API middleware enables caching, invalidation, polling
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware({
             serializableCheck: {
@@ -50,10 +43,8 @@ export const store = configureStore({
         }).concat(menuApi.middleware).concat(orderApi.middleware)
 });
 
-// Setup listeners for RTK Query
 setupListeners(store.dispatch);
 
-// Create the persistor for state persistence
 export const persistor = persistStore(store);
 
 export default store;
