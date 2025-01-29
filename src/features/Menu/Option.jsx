@@ -14,7 +14,7 @@ const Option = React.memo(({ option, itemName }) => {
             }
             setSearchParams(newParams);
         },
-        [searchParams, setSearchParams] // Dependencies
+        [searchParams, setSearchParams]
     );
 
     const paramKey = `${itemName}_${option}`;
