@@ -48,6 +48,7 @@ export default function ShoppingCart() {
             .then((response) => {
                 console.log("Order submitted successfully:", response);
                 dispatch(clearShoppingCart());
+                //alerts the user when the Order was successful
                 alert("Order submitted successfully!");
                 dispatch(setOrderId(newOrder.orderId));
             })
@@ -55,6 +56,7 @@ export default function ShoppingCart() {
                 console.error("Failed to submit order:", error);
                 alert("Failed to submit your order. Please try again.");
             });
+            //navigate to the order screen where the ordered items are shown
         navigate("/your-order");
     }
 
@@ -66,6 +68,7 @@ export default function ShoppingCart() {
     return (
         <aside className="p-4 border rounded-lg shadow-md">
             <h1 className="text-2xl font-semibold mb-4">Shopping Cart</h1>
+            {/*only render the shopping cart items if the items array from redux is > 0 and the items are not undefined  */} 
             {items.length > 0 && items ? (
                 <>
                     {items.map((item, index) => (
